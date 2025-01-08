@@ -46,7 +46,7 @@ const registerUser = asyncHandler( async function (req, res) {
     const avatar = await uploadOnCloudinary(avatarLocalPath)
     const coverImage = await uploadOnCloudinary(coverImageLocalPath)
 
-    console.log(avatar);
+    console.log(avatar.url);
     
 
     if(!avatar){
@@ -63,9 +63,7 @@ const registerUser = asyncHandler( async function (req, res) {
 
     })
 
-    const createdUser = await User.findById(user._id).select(
-        "-password - refreshToken"
-    )
+    const createdUser = await User.findById(user._id)
 
     if(!createdUser) {
         throw new ApiError(500, "Something went wrong when registering user.")
