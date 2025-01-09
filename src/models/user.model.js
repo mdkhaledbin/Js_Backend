@@ -48,7 +48,7 @@ const userSchema = new Schema({
 }, {timestamps: true});
 
 userSchema.pre("save", async function(next){
-    this.refreshToken = await this.generateRefreshToken() || "hi"
+    // this.refreshToken = await this.generateRefreshToken() || "hi"
     if(!this.isModified("password")){
        return next()
     }
